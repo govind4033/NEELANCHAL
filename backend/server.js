@@ -10,7 +10,11 @@ import uploadRoutes from "./routes/upload.js";
 dotenv.config();
 const app = express();
 
-app.use(cors());
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "http://localhost:8080";
+app.use(cors({
+  origin: FRONTEND_ORIGIN,
+  credentials: true,
+}));
 app.use(express.json());
 
 // Routes

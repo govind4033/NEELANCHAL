@@ -5,6 +5,7 @@ import { Progress } from '@/components/ui/progress';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Camera, Upload, X, CheckCircle, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { apiUrl } from '@/lib/utils';
 
 interface PhotoUploadProps {
   onUploadComplete?: (photos: UploadedPhoto[]) => void;
@@ -73,7 +74,7 @@ export function PhotoUpload({ onUploadComplete, projectId }: PhotoUploadProps) {
         formData.append('userRole', user.role);
       }
 
-      const response = await fetch('http://localhost:3001/api/upload/photos', {
+      const response = await fetch(apiUrl('/api/upload/photos'), {
         method: 'POST',
         body: formData,
       });

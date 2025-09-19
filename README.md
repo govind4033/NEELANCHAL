@@ -62,7 +62,30 @@ This project is built with:
 
 ## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/9ac280e2-5860-4102-8bc1-c9c6d245c71f) and click on Share -> Publish.
+### Render (Frontend + Backend)
+
+This repo contains a Vite React frontend and an Express/MongoDB backend. To deploy on Render:
+
+1) Create a Web Service for the backend
+
+- Root Directory: `backend`
+- Build Command: `npm install`
+- Start Command: `npm start`
+- Environment
+  - `PORT`: 3001
+  - `MONGO_URI`: your MongoDB connection string
+  - `JWT_SECRET`: a strong secret
+  - `FRONTEND_ORIGIN`: the final frontend URL (e.g. `https://your-frontend.onrender.com`)
+
+2) Create a Static Site for the frontend
+
+- Root Directory: project root
+- Build Command: `npm install && npm run build`
+- Publish Directory: `dist`
+- Environment
+  - `VITE_API_BASE_URL`: backend web service URL (e.g. `https://your-backend.onrender.com`)
+
+After both are live, update `FRONTEND_ORIGIN` on the backend to the exact frontend domain if it changes.
 
 ## Can I connect a custom domain to my Lovable project?
 
